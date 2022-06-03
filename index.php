@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf8">
-		<link rel="stylesheet" href="index.css">
+		<link rel="stylesheet" href="https://redex2.dev/index.css">
 		<title>Redex2's projects</title>
 		<link rel="icon" type="image/png" href="https://redex2.dev/icon.png">
 	</head>
