@@ -185,3 +185,9 @@ footer > a
 	width:23%;
 	margin:1%;
 }
+
+.entry a 
+{
+	color: rgba(50,230,50,0.8);
+	text-decoration:none;
+}
