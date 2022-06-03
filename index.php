@@ -67,7 +67,7 @@
 					$out->closeCursor();
 					?>
 				</main>
-				<main id="entry" <?php if(!isset($_GET["pid"])||$_GET["pid"]=="")echo 'style="display:none;"';?> >
+				<main id="entry" <?php if(!isset($_GET["pid"])||(isset($_GET["pid"]) && $_GET["pid"]==""))echo 'style="display:none;"';?> >
 					<?php if(isset($_GET["pid"])&&$_GET["pid"]!="") require_once("entry.php"); ?>
 				</main>
 				<aside>
@@ -107,7 +107,7 @@
 					?>
 				</aside>
 			</div>
-			<div id="search-result" <?php if(!isset($_GET["search"])||$_GET["search"]=="")echo 'style="display:none;"';?> >
+			<div id="search-result" <?php if(!isset($_GET["search"])||(isset($_GET["search"]) && $_GET["search"]==""))echo 'style="display:none;"';?> >
 				<main id="search-content">
 					<?php if(isset($_GET["search"])&&$_GET["search"]!="") require_once("search_engine.php"); ?>
 				</main>
