@@ -135,9 +135,9 @@
 				</main>
 			</div>
 			<footer>
-				GitHub: <a href="https://github.com/redex2">github.com/redex2</a><br>
+				GitHub: <a target="_blank" href="https://github.com/redex2">github.com/redex2</a><br>
 				E-mail: <a href="mailto:redex2@redex2.dev">redex2@redex2.dev</a><br>
-				PGP: <a href="https://pgp.redex2.dev">pgp.redex2.dev</a>
+				PGP: <a target="_blank" href="https://pgp.redex2.dev">pgp.redex2.dev</a>
 			</footer>
 		</div>
 		<script src="https://redex2.dev/index.js"></script>
