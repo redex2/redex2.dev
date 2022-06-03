@@ -140,6 +140,6 @@
 				PGP: <a href="https://pgp.redex2.dev">pgp.redex2.dev</a>
 			</footer>
 		</div>
-		<script src="index.js"></script>
+		<script src="https://redex2.dev/index.js"></script>
 	</body>
 </html>

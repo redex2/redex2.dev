@@ -39,7 +39,7 @@ function content_load(data)
 		document.getElementById("content").style.display="none";
 		document.getElementById("search-result").style.display="block";
 		window.history.pushState(" ", "src", "?search="+data.target.value);
-		loadXMLDoc("search_engine.php"+window.location.search);
+		loadXMLDoc("https://redex2.dev/search_engine.php"+window.location.search);
 	}
 	else
 	{
