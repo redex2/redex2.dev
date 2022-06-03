@@ -38,6 +38,13 @@ if(isset($_GET["pid"]))
 			echo '<h2>'.$line["title"].'</h2>';
 			echo '<h3>'.$line["lang"].'</h3>';
 			echo '<p>'.$line["text"].'</p>';
+			if($line["link"]!=""||$line["git"]!="")
+			{
+				echo '<br><div class="link">';
+				if($line["link"]!="")echo '<a target="_blank" href="'.$line["link"].'">LINK</a><br>';
+				if($line["git"]!="")echo '<a target="_blank" href="'.$line["git"].'">GIT</a><br>';
+				echo '</div>';
+			}
 			echo '</article>';
 		}
 		else if($line["type"]=="b")

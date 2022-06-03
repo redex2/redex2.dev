@@ -58,8 +58,8 @@
 						if($entry["link"]!=""||$entry["git"]!="")
 						{
 							echo '<div class="link">';
-							if($entry["link"]!="")echo '<a href="'.$entry["link"].'">LINK</a><br>';
-							if($entry["git"]!="")echo '<a href="'.$entry["git"].'">GIT</a><br>';
+							if($entry["link"]!="")echo '<a target="_blank" href="'.$entry["link"].'">LINK</a><br>';
+							if($entry["git"]!="")echo '<a target="_blank" href="'.$entry["git"].'">GIT</a><br>';
 							echo '</div>';
 						}
 						echo '</article>';

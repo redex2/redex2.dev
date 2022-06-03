@@ -66,6 +66,13 @@ if(isset($_GET["search"]))
 				echo '<h2>'.$data[$id]["title"].'</h2>';
 				echo '<h3>'.$data[$id]["lang"].'</h3>';
 				echo '<p>'.$data[$id]["text"].'</p>';
+				if($data[$id]["link"]!=""||$data[$id]["git"]!="")
+				{
+					echo '<div class="link">';
+					if($data[$id]["link"]!="")echo '<a target="_blank" href="'.$data[$id]["link"].'">LINK</a><br>';
+					if($data[$id]["git"]!="")echo '<a target="_blank" href="'.$data[$id]["git"].'">GIT</a><br>';
+					echo '</div>';
+				}
 				echo '</a>';
 			}
 			else if($data[$id]["type"]=="b")
