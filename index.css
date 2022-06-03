@@ -175,6 +175,11 @@ footer > a
 	text-decoration:none;
 }
 
+aside > article
+{
+	margin-bottom:15px;
+}
+
 #search-result > main
 {
 	width:100%;
