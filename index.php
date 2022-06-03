@@ -89,7 +89,7 @@
 					{
 						try
 						{
-							$out = $pdo->query("SELECT id, title, TO_CHAR(datetime, 'dd-mm-yyyy HH24:ii') AS datetime, text FROM entry WHERE type = 'b' ORDER BY id DESC LIMIT 5");
+							$out = $pdo->query("SELECT id, title, TO_CHAR(datetime, 'dd-mm-yyyy HH24:MI') AS datetime, text FROM entry WHERE type = 'b' ORDER BY id DESC LIMIT 5");
 						}
 						catch(PDOException $e)
 						{
