@@ -30,8 +30,10 @@ if(isset($_GET["pid"]))
 		error_log('SQL error: ' . $e->getMessage());
 		error_print_se();
 	}
+	$i=0;
 	foreach($out as $line)
 	{
+		$i++;
 		if($line["type"]=="p")
 		{
 			echo '<article class="entry">';
@@ -56,5 +58,6 @@ if(isset($_GET["pid"]))
 			echo '</article>';
 		}
 	}
+	if($i==0)entry_404();
 }
 ?>
