@@ -62,10 +62,11 @@ if(isset($_GET["search"]))
 			if($data[$id]["type"]=="p")
 			{
 				echo '<article class="project">';
-				echo '<a href="/project/'.$data[$id]["id"].'/'.strtolower(str_replace(' ', '_', $data[$id]["title"])).'/">';
+				echo '<a href="/'.$data[$id]["id"].'/'.strtolower(str_replace(' ', '_', $data[$id]["title"])).'/">';
 				echo '<h2>'.$data[$id]["title"].'</h2>';
 				echo '<h3>'.$data[$id]["lang"].'</h3>';
 				echo '<p>'.$data[$id]["text"].'</p>';
+				echo '</a>';
 				if($data[$id]["link"]!=""||$data[$id]["git"]!="")
 				{
 					echo '<div class="link">';
@@ -73,12 +74,12 @@ if(isset($_GET["search"]))
 					if($data[$id]["git"]!="")echo '<a target="_blank" href="'.$data[$id]["git"].'">GIT</a><br>';
 					echo '</div>';
 				}
-				echo '</a>';
+				echo '</article>';
 			}
 			else if($data[$id]["type"]=="b")
 			{
 				echo '<article class="post">';
-				echo '<a href="/news/'.$data[$id]["id"].'/'.strtolower(str_replace(' ', '_', $data[$id]["title"])).'/">';
+				echo '<a href="/'.$data[$id]["id"].'/'.strtolower(str_replace(' ', '_', $data[$id]["title"])).'/">';
 				echo '<h2>'.$data[$id]["title"].'</h2>';
 				echo '<h3>'.$data[$id]["datetime"].'</h3>';
 				echo '<p>'.$data[$id]["text"].'</p>';
