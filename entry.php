@@ -8,19 +8,18 @@ function entry_404()
 	echo '<h3>:(</h3>';
 	echo '<p><a href="/">Click to redirect to main page</a></p>';
 	echo '</article>';
-	exit;
 }
 
 if(isset($_GET["pid"]))
 {
 	$in = strtolower(str_replace(' ', '_', $_GET["pid"]));
-	if(preg_match("/^\/[0-9]+\/([a-zA-Z0-9_]+\/?)?$/", $in)!==1)entry_404();
-	if(preg_match("/^\/[0-9]+\//", $in, $matches)!==1)entry_404();
-	if(preg_match("/[0-9]+/", $matches[0], $matches)!==1)entry_404();
+	if(preg_match("/^\/[0-9]+\/([a-zA-Z0-9_]+\/?)?$/", $in)!==1){entry_404();return;}
+	if(preg_match("/^\/[0-9]+\//", $in, $matches)!==1){entry_404();return;}
+	if(preg_match("/[0-9]+/", $matches[0], $matches)!==1){entry_404();return;}
 	$matches=$matches[0];
 	require_once(__DIR__."/../sql.php");
 	$pdo=db_connect();
-	if(!$pdo) entry_404();
+	if(!$pdo) {entry_404();return;}
 	try
 	{
 		$out = $pdo->query("SELECT *,TO_CHAR(datetime, 'dd-mm-yyyy HH24:ii') AS datetime FROM entry WHERE id = $matches");
@@ -29,6 +28,7 @@ if(isset($_GET["pid"]))
 	{
 		error_log('SQL error: ' . $e->getMessage());
 		error_print_se();
+		return;
 	}
 	$i=0;
 	foreach($out as $line)
@@ -58,6 +58,6 @@ if(isset($_GET["pid"]))
 			echo '</article>';
 		}
 	}
-	if($i==0)entry_404();
+	if($i==0){entry_404();return;}
 }
 ?>

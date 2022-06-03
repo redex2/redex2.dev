@@ -11,11 +11,11 @@ if(isset($_GET["search"]))
 		echo '		<p>I can use olny letters, numbers and space!</p>';
 		echo '	</a>';
 		echo '</article>';
-		exit;
+		return;
 	}
 	require_once(__DIR__."/../sql.php");
 	$pdo=db_connect();
-	if(!$pdo) error_print_se();
+	if(!$pdo) {error_print_se();return;}
 	try
 	{
 		$out = $pdo->query("SELECT *,TO_CHAR(datetime, 'dd-mm-yyyy HH24:ii') AS datetime FROM entry WHERE REPLACE(LOWER(title),' ','_') LIKE '%$in%'");
@@ -24,6 +24,7 @@ if(isset($_GET["search"]))
 	{
 		error_log('SQL error: ' . $e->getMessage());
 		error_print_se();
+		return;
 	}
 	function error_print_se()
 	{
@@ -34,7 +35,6 @@ if(isset($_GET["search"]))
 		echo '		<p>I have a problem</p>';
 		echo '	</a>';
 		echo '</article>';
-		exit;
 	}
 	$points=[];
 	$data=[];

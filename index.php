@@ -26,15 +26,24 @@
 					<?php
 					require_once(__DIR__."/../sql.php");
 					$pdo=db_connect();
-					if(!$pdo) error_print(0);
-					try
+					$ok=1;
+					$out;
+					if($pdo)
 					{
-						$out = $pdo->query("SELECT id, title, lang, text, git, link FROM entry WHERE type = 'p' ORDER BY id");
+						try
+						{
+							$out = $pdo->query("SELECT id, title, lang, text, git, link FROM entry WHERE type = 'p' ORDER BY id DESC");
+						}
+						catch(PDOException $e)
+						{
+							error_log('SQL error: ' . $e->getMessage());
+							error_print(1);
+							$ok=0;
+						}
 					}
-					catch(PDOException $e)
+					else
 					{
-						error_log('SQL error: ' . $e->getMessage());
-						error_print(1);
+						$ok=0;
 					}
 					function error_print($num)
 					{
@@ -45,26 +54,28 @@
 						echo '		<p>I want to show you projects, but something went wrong<br>Code:'.$num.'</p>';
 						echo '	</a>';
 						echo '</article>';
-						exit;
 					}
-					foreach($out as $entry)
+					if($ok)
 					{
-						echo '<article class="project">';
-						echo '	<a href="/'.$entry["id"].'/'.strtolower(str_replace(' ', '_', $entry["title"])).'/">';
-						echo '		<h2>'.$entry["title"].'</h2>';
-						echo '		<h3>'.$entry["lang"].'</h3>';
-						echo '		<p>'.$entry["text"].'</p>';
-						echo '	</a>';
-						if($entry["link"]!=""||$entry["git"]!="")
+						foreach($out as $entry)
 						{
-							echo '<div class="link">';
-							if($entry["link"]!="")echo '<a target="_blank" href="'.$entry["link"].'">LINK</a><br>';
-							if($entry["git"]!="")echo '<a target="_blank" href="'.$entry["git"].'">GIT</a><br>';
-							echo '</div>';
+							echo '<article class="project">';
+							echo '	<a href="/'.$entry["id"].'/'.strtolower(str_replace(' ', '_', $entry["title"])).'/">';
+							echo '		<h2>'.$entry["title"].'</h2>';
+							echo '		<h3>'.$entry["lang"].'</h3>';
+							echo '		<p>'.$entry["text"].'</p>';
+							echo '	</a>';
+							if($entry["link"]!=""||$entry["git"]!="")
+							{
+								echo '<div class="link">';
+								if($entry["link"]!="")echo '<a target="_blank" href="'.$entry["link"].'">LINK</a><br>';
+								if($entry["git"]!="")echo '<a target="_blank" href="'.$entry["git"].'">GIT</a><br>';
+								echo '</div>';
+							}
+							echo '</article>';
 						}
-						echo '</article>';
+						$out->closeCursor();
 					}
-					$out->closeCursor();
 					?>
 				</main>
 				<main id="entry" <?php if(!isset($_GET["pid"])||(isset($_GET["pid"]) && $_GET["pid"]==""))echo 'style="display:none;"';?> >
@@ -72,15 +83,24 @@
 				</main>
 				<aside>
 					<?php
-					if(!$pdo) error_print_blog(0);
-					try
+					$ok=1;
+					$out;
+					if($pdo)
 					{
-						$out = $pdo->query("SELECT id, title, TO_CHAR(datetime, 'dd-mm-yyyy HH24:ii') AS datetime, text FROM entry WHERE type = 'b' ORDER BY id LIMIT 5");
+						try
+						{
+							$out = $pdo->query("SELECT id, title, TO_CHAR(datetime, 'dd-mm-yyyy HH24:ii') AS datetime, text FROM entry WHERE type = 'b' ORDER BY id DESC LIMIT 5");
+						}
+						catch(PDOException $e)
+						{
+							error_log('SQL error: ' . $e->getMessage());
+							error_print_blog(1);
+							$ok=0;
+						}
 					}
-					catch(PDOException $e)
+					else
 					{
-						error_log('SQL error: ' . $e->getMessage());
-						error_print_blog(1);
+						$ok=0;
 					}
 					function error_print_blog($num)
 					{
@@ -91,19 +111,21 @@
 						echo '		<p>I want to show you news, but something went wrong<br>Code:'.$num.'</p>';
 						echo '	</a>';
 						echo '</article>';
-						exit;
 					}
-					foreach($out as $entry)
+					if($ok)
 					{
-						echo '<article class="post">';
-						echo '	<a href="/'.$entry["id"].'/'.strtolower(str_replace(' ', '_', $entry["title"])).'/">';
-						echo '		<h2>'.$entry["title"].'</h2>';
-						echo '		<h3>'.$entry["datetime"].'</h3>';
-						echo '		<p>'.$entry["text"].'</p>';
-						echo '	</a>';
-						echo '</article>';
+						foreach($out as $entry)
+						{
+							echo '<article class="post">';
+							echo '	<a href="/'.$entry["id"].'/'.strtolower(str_replace(' ', '_', $entry["title"])).'/">';
+							echo '		<h2>'.$entry["title"].'</h2>';
+							echo '		<h3>'.$entry["datetime"].'</h3>';
+							echo '		<p>'.$entry["text"].'</p>';
+							echo '	</a>';
+							echo '</article>';
+						}
+						$out->closeCursor();
 					}
-					$out->closeCursor();
 					?>
 				</aside>
 			</div>
