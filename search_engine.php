@@ -2,7 +2,7 @@
 if(isset($_GET["search"]))
 {
 	$in = strtolower(str_replace(' ', '_', $_GET["search"]));
-	if(preg_match("/^[a-z0-9_]+$/", $in)!==1)
+	if(preg_match("/^[.,a-z0-9_]+$/", $in)!==1)
 	{
 		echo '<article class="post">';
 		echo '	<a>';
@@ -18,7 +18,7 @@ if(isset($_GET["search"]))
 	if(!$pdo) {error_print_se();return;}
 	try
 	{
-		$out = $pdo->query("SELECT *,TO_CHAR(datetime, 'dd-mm-yyyy HH24:ii') AS datetime FROM entry WHERE REPLACE(LOWER(title),' ','_') LIKE '%$in%'");
+		$out = $pdo->query("SELECT *,TO_CHAR(datetime, 'dd-mm-yyyy HH24:ii') AS datetime FROM entry WHERE REPLACE(LOWER(title),' ','_') LIKE '%$in%' OR REPLACE(LOWER(lang),' ','_') LIKE '%$in%' OR REPLACE(LOWER(text),' ','_') LIKE '%$in%'");
 	}
 	catch(PDOException $e)
 	{

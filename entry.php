@@ -13,7 +13,7 @@ function entry_404()
 if(isset($_GET["pid"]))
 {
 	$in = strtolower(str_replace(' ', '_', $_GET["pid"]));
-	if(preg_match("/^\/[0-9]+\/([a-zA-Z0-9_]+\/?)?$/", $in)!==1){entry_404();return;}
+	if(preg_match("/^\/[0-9]+\/([,.a-zA-Z0-9_]+\/?)?$/", $in)!==1){entry_404();return;}
 	if(preg_match("/^\/[0-9]+\//", $in, $matches)!==1){entry_404();return;}
 	if(preg_match("/[0-9]+/", $matches[0], $matches)!==1){entry_404();return;}
 	$matches=$matches[0];
