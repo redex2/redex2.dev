@@ -204,7 +204,7 @@ form.account
 	line-height: 2.5em;
 }
 
-form.account input[type=text]
+form.account input[type=text], form.account input[type=number]
 {
 	color: rgba(50,230,50,0.9);
 	border: 2px solid green;
@@ -216,6 +216,15 @@ form.account input[type=text]
 	padding: 0.1em;
 	text-align:center;
 	outline: none;
+}
+form.account input[type=number]
+{
+	-moz-appearance:textfield;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 form.account input[type="text"]:read-only {
   background: rgb(32,40,32);
