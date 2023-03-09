@@ -13,8 +13,11 @@ h1
 {
 	color: #b4fab4;
 	text-align:center;
-	font-size:2em;
 	margin-bottom:5vh;
+}
+h2, h3
+{
+	color: #c8dcc8;
 }
 p
 {
