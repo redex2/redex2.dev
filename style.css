@@ -1,35 +1,37 @@
-html,head,body
-{
-	margin:0;
+html,
+head,
+body {
+	margin: 0;
 }
-body
-{
+
+body {
 	background-color: #0f0f0f;
 	color: #dcdcdc;
-	padding:0 4vw;
+	padding: 0 4vw;
 	font-size: calc(14px + 0.390625vw);
 }
-h1
-{
+
+h1 {
 	color: #b4fab4;
-	text-align:center;
-	margin-bottom:5vh;
+	text-align: center;
+	margin-bottom: 5vh;
 }
-h2, h3
-{
+
+h2,
+h3 {
 	color: #c8dcc8;
 }
-p
-{
-	font-size:1.2em;
+
+p {
+	font-size: 1.2em;
 }
-li
-{
-	line-height:1.6em;
-	font-size:1.1em;
+
+li {
+	line-height: 1.6em;
+	font-size: 1.1em;
 }
-a
-{
+
+a {
 	color: #fac896;
-	font-size:1em;
+	font-size: 1em;
 }
